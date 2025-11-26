@@ -1,22 +1,15 @@
 package hexlet.code;
 
 import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
-import hexlet.code.Differ;
-import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.security.MessageDigest;
-import java.util.concurrent.Callable;
+import java.io.IOException;
 
 
 public class App {
 
-    public static void main(String[] args) {
-        int exitCode = new CommandLine(new Differ()).execute(args);
+    public static void main(String[] args) throws IOException {
+        CommandLine cmd = new CommandLine(new Differ());
+        int exitCode = cmd.execute(args);
         System.exit(exitCode);
     }
 }
