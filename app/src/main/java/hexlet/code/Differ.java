@@ -1,7 +1,10 @@
 package hexlet.code;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.Set;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,20 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Command(name = "gendiff", mixinStandardHelpOptions = true,
-        description = "Compares two configuration files and shows a difference.")
-public class Differ implements Callable<Integer> {
-    @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
-    private String filepath1;
-
-    @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
-    private String filepath2;
-
-    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "format", description = "output format [default: stylish]")
-    private String format;
-
-    @Override
-    public Integer call() throws Exception {
+public class Differ {
+ public static String generate(String filepath1, String filepath2) throws Exception {
         /* Для отладки
         System.out.println("Hello from inside of Differ class!");
         System.out.println("path to the first file is :=: " + filepath1);
@@ -63,12 +54,56 @@ public class Differ implements Callable<Integer> {
         System.out.println(secondFileTxt);
         */
 
-        //десериализуем файлы и выводим в stdout
+        //десериализуем файлы
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> firstFileMap = objectMapper.readValue(firstFileTxt, new TypeReference<Map<String,Object>>(){});
-        System.out.println(firstFileMap);
         Map<String, Object> secondFileMap = objectMapper.readValue(secondFileTxt, new TypeReference<Map<String,Object>>(){});
-        System.out.println(secondFileMap);
-        return 23;
+
+        Set<String> firstFileKeys = firstFileMap.keySet();
+        Set<String> secondFileKeys = secondFileMap.keySet();
+
+        ArrayList<String> allKeys = new ArrayList<>();
+
+        for (var key : firstFileKeys) {
+            if (!allKeys.contains(key)) {
+                allKeys.add(key);
+            }
+        }
+
+        for (var key : secondFileKeys) {
+            if (!allKeys.contains(key)) {
+                allKeys.add(key);
+            }
+        }
+
+        Collections.sort(allKeys);
+
+        String result = "{\n";
+
+        for (var key : allKeys) {
+            if (firstFileMap.containsKey(key)) {
+                if (secondFileMap.containsKey(key)) {
+                    var firstElement = firstFileMap.get(key);
+                    var secondElement = secondFileMap.get(key);
+
+                    if (firstElement.equals(secondElement)) {
+                        result = result + "    " + key + ": " + firstElement + "\n";
+                    } else {
+                        result = result + "  - " + key + ": " + firstElement + "\n";
+                        result = result + "  + " + key + ": " + secondElement + "\n";
+                    }
+                } else {
+                    var firstElement = firstFileMap.get(key);
+                    result = result + "  - " + key + ": " + firstElement + "\n";
+                }
+            } else {
+                if (secondFileMap.containsKey(key)) {
+                    var secondElement = secondFileMap.get(key);
+                    result = result + "  + " + key + ": " + secondElement + "\n";
+                }
+            }
+        }
+        result = result + "}";
+        return result;
     }
 }
