@@ -2,23 +2,18 @@ package hexlet.code;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.Set;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Differ {
- public static String generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filepath1, String filepath2) throws Exception {
         /* Для отладки
         System.out.println("Hello from inside of Differ class!");
         System.out.println("path to the first file is :=: " + filepath1);
@@ -56,8 +51,8 @@ public class Differ {
 
         //десериализуем файлы
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> firstFileMap = objectMapper.readValue(firstFileTxt, new TypeReference<Map<String,Object>>(){});
-        Map<String, Object> secondFileMap = objectMapper.readValue(secondFileTxt, new TypeReference<Map<String,Object>>(){});
+        var firstFileMap = objectMapper.readValue(firstFileTxt, new TypeReference<Map<String, Object>>() { });
+        var secondFileMap = objectMapper.readValue(secondFileTxt, new TypeReference<Map<String, Object>>() { });
 
         Set<String> firstFileKeys = firstFileMap.keySet();
         Set<String> secondFileKeys = secondFileMap.keySet();
