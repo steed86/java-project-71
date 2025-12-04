@@ -3,6 +3,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.51.0"
     application
     checkstyle
+    id("org.sonarqube") version "7.1.0.6387"
 }
 
 group = "hexlet.code"
@@ -27,4 +28,11 @@ tasks.test {
 
 application {
     mainClass = "hexlet.code.App"
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "steed86_java-project-71")
+        property("sonar.organization", "steed86")
+    }
 }
