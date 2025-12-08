@@ -4,6 +4,7 @@ plugins {
     application
     checkstyle
     id("org.sonarqube") version "7.1.0.6387"
+    jacoco
 }
 
 group = "hexlet.code"
@@ -41,4 +42,17 @@ sonar {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
