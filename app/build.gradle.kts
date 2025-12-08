@@ -20,6 +20,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.20.1")
     implementation("com.puppycrawl.tools:checkstyle:12.2.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.test {
@@ -35,4 +37,8 @@ sonar {
         property("sonar.projectKey", "steed86_java-project-71")
         property("sonar.organization", "steed86")
     }
+}
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
 }

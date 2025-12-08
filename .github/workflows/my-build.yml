@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: cd ./app && make build-and-run-dist
+      - run: cd ./app && make build
