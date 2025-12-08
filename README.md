@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/steed86/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/steed86/java-project-71/actions)
 
-[![test-flow](https://github.com/steed86/java-project-71/actions/workflows/test-flow.yml/badge.svg)](https://github.com/steed86/java-project-71/actions/workflows/test-flow.yml)
+[![Execute build from Makefile](https://github.com/steed86/java-project-71/actions/workflows/my-build.yml/badge.svg)](https://github.com/steed86/java-project-71/actions/workflows/my-build.yml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=steed86_java-project-71&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=steed86_java-project-71)
 
