@@ -1,4 +1,4 @@
-name: test-flow
+name: Execute build from Makefile
 
 on: push
 
