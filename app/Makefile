@@ -11,6 +11,6 @@ build-and-run-dist:
 	./build/install/app/bin/app -h
 
 build:
-	./gradlew clean build checkstyleMain checkstyleTest test
+	./gradlew clean build installDist checkstyleMain checkstyleTest test
 
 .PHONY: build
