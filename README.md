@@ -13,4 +13,4 @@
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=steed86_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=steed86_java-project-71)
 
-https://asciinema.org/a/yruhHMppdIOY0GsjoJb7VrX12
+https://asciinema.org/a/wEXGs9Ze15xlOqkQ
