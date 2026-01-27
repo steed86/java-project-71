@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Differ {
-    public static ArrayList<String> getKeysList(Map<String, String> firstMap, Map<String, String> secondMap) {
+    public static ArrayList<String> getKeysList(Map<String, Object> firstMap, Map<String, Object> secondMap) {
         Set<String> firstMapKeys = firstMap.keySet();
         Set<String> secondMapKeys = secondMap.keySet();
 
@@ -48,8 +48,8 @@ public class Differ {
         for (var key : allKeys) {
             if (firstFileMap.containsKey(key)) {
                 if (secondFileMap.containsKey(key)) {
-                    var firstElement = firstFileMap.get(key);
-                    var secondElement = secondFileMap.get(key);
+                    var firstElement = firstFileMap.get(key).toString();
+                    var secondElement = secondFileMap.get(key).toString();
 
                     if (firstElement.equals(secondElement)) {
                         result = result + resultStringBuilder(key, firstElement, "=");
@@ -58,12 +58,12 @@ public class Differ {
                         result = result + resultStringBuilder(key, secondElement, "+");
                     }
                 } else {
-                    var firstElement = firstFileMap.get(key);
+                    var firstElement = firstFileMap.get(key).toString();
                     result = result + resultStringBuilder(key, firstElement, "-");
                 }
             } else {
                 if (secondFileMap.containsKey(key)) {
-                    var secondElement = secondFileMap.get(key);
+                    var secondElement = secondFileMap.get(key).toString();
                     result = result + resultStringBuilder(key, secondElement, "+");
                 }
             }

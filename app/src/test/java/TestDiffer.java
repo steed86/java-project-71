@@ -132,4 +132,16 @@ public class TestDiffer {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testNestedJsonComparison1() throws Exception {
+        var testName = "testNestedJsonComparison1";
+        var comparisonFilesFormat = "json";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat);
+
+        assertEquals(expected, actual);
+    }
 }
