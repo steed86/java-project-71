@@ -6,6 +6,8 @@ import java.nio.file.Files;
 
 import hexlet.code.Differ;
 
+
+import static hexlet.code.Formatter.formatDifferResult;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -32,14 +34,16 @@ public class TestDiffer {
     }
 
     public static String getActualResult(String testName, String fileFormat) throws Exception {
-        return Differ.generate(
+        var differResult = Differ.generate(
                 getFixturePathStr(testName, file1PathString, fileFormat),
                 getFixturePathStr(testName, file2PathString, fileFormat));
+        return formatDifferResult(differResult, "stylish");
     }
 
     @Test
     public void testJsonComparison() throws Exception {
         var testName = "testJsonComparison";
+
         var comparisonFilesFormat = "json";
 
         var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
@@ -137,6 +141,18 @@ public class TestDiffer {
     public void testNestedJsonComparison1() throws Exception {
         var testName = "testNestedJsonComparison1";
         var comparisonFilesFormat = "json";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testNestedYamlComparison1() throws Exception {
+        var testName = "testNestedYamlComparison1";
+        var comparisonFilesFormat = "yml";
 
         var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
 
