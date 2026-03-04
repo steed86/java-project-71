@@ -27,6 +27,10 @@ dependencies {
     implementation("org.yaml:snakeyaml:2.5")
     // Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.0")
+    // Source: https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20251224")
+    // Source: https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.20.0")
 }
 
 tasks.test {

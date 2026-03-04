@@ -40,6 +40,13 @@ public class TestDiffer {
         return formatDifferResult(differResult, "stylish");
     }
 
+    public static String getActualResult(String testName, String fileFormat, String formatter) throws Exception {
+        var differResult = Differ.generate(
+                getFixturePathStr(testName, file1PathString, fileFormat),
+                getFixturePathStr(testName, file2PathString, fileFormat));
+        return formatDifferResult(differResult, formatter);
+    }
+
     @Test
     public void testJsonComparison() throws Exception {
         var testName = "testJsonComparison";
@@ -160,4 +167,29 @@ public class TestDiffer {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testNestedJsonCompPlainFormatter1() throws Exception {
+        var testName = "testNestedJsonCompPlainFormatter1";
+        var comparisonFilesFormat = "json";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat, "plain");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testNestedYamlCompPlainFormatter1() throws Exception {
+        var testName = "testNestedYamlCompPlainFormatter1";
+        var comparisonFilesFormat = "yml";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat, "plain");
+
+        assertEquals(expected, actual);
+    }
+
 }
