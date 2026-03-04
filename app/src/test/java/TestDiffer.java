@@ -34,14 +34,14 @@ public class TestDiffer {
     }
 
     public static String getActualResult(String testName, String fileFormat) throws Exception {
-        var differResult = Differ.generate(
+        var differResult = Differ.getDifferResult(
                 getFixturePathStr(testName, file1PathString, fileFormat),
                 getFixturePathStr(testName, file2PathString, fileFormat));
         return formatDifferResult(differResult, "stylish");
     }
 
     public static String getActualResult(String testName, String fileFormat, String formatter) throws Exception {
-        var differResult = Differ.generate(
+        var differResult = Differ.getDifferResult(
                 getFixturePathStr(testName, file1PathString, fileFormat),
                 getFixturePathStr(testName, file2PathString, fileFormat));
         return formatDifferResult(differResult, formatter);

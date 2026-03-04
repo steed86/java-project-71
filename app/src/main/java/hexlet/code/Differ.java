@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import static hexlet.code.Formatter.formatDifferResult;
+
 public class Differ {
     public static ArrayList<String> getKeysList(Map<String, Object> firstMap, Map<String, Object> secondMap) {
         Set<String> firstMapKeys = firstMap.keySet();
@@ -39,7 +41,18 @@ public class Differ {
         return firstPart + key + delimiter + value + lastPart;
     }
 
-    public static HashMap<String, HashMap<String, Object>> generate(
+    public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
+        var result = "";
+
+        var differResult = getDifferResult(filepath1, filepath2);
+
+        result = formatDifferResult(differResult, formatName);
+
+
+        return result;
+    }
+
+    public static HashMap<String, HashMap<String, Object>> getDifferResult(
             String filepath1, String filepath2) throws Exception {
         var firstFileMap = Parser.getMapFromFile(filepath1);
         var secondFileMap = Parser.getMapFromFile(filepath2);

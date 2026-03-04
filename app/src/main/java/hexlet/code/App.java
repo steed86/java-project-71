@@ -5,8 +5,6 @@ import java.util.concurrent.Callable;
 
 import picocli.CommandLine;
 
-import static hexlet.code.Formatter.formatDifferResult;
-
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true,
         description = "Compares two configuration files and shows a difference.")
 
@@ -24,8 +22,7 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        var differResult = Differ.generate(filepath1, filepath2);
-        return formatDifferResult(differResult, format);
+        return Differ.generate(filepath1, filepath2, format);
     }
 
     public static void main(String[] args) throws IOException {
