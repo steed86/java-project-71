@@ -34,13 +34,6 @@ public class Differ {
         return allKeys;
     }
 
-    public static String resultStringBuilder(String key, String value, String resultSign) {
-        var delimiter = ": ";
-        var firstPart = "  " + (resultSign.equals("+") || resultSign.equals("-") ? resultSign : " ") + " ";
-        var lastPart = "\n";
-        return firstPart + key + delimiter + value + lastPart;
-    }
-
     public static String generate(String filepath1, String filepath2, String formatName) throws Exception {
         var result = "";
 
