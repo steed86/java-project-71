@@ -192,4 +192,27 @@ public class TestDiffer {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testNestedJsonCompJsonFormatter1() throws Exception {
+        var testName = "testNestedJsonCompJsonFormatter1";
+        var comparisonFilesFormat = "json";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat, "json");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testNestedYamlCompJsonFormatter1() throws Exception {
+        var testName = "testNestedYamlCompJsonFormatter1";
+        var comparisonFilesFormat = "yml";
+
+        var expected = getFileContent(testName, resultFilePathString, resultFileFormat);
+
+        var actual = getActualResult(testName, comparisonFilesFormat, "json");
+
+        assertEquals(expected, actual);
+    }
 }
