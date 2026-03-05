@@ -45,6 +45,19 @@ public class Differ {
         return result;
     }
 
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        var result = "";
+
+        var formatName = "stylish";
+
+        var differResult = getDifferResult(filepath1, filepath2);
+
+        result = formatDifferResult(differResult, formatName);
+
+
+        return result;
+    }
+
     public static HashMap<String, HashMap<String, Object>> getDifferResult(
             String filepath1, String filepath2) throws Exception {
         var firstFileMap = Parser.getMapFromFile(filepath1);
