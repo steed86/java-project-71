@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDiffer {
 
-    public static String file1PathString = "file1";
-    public static String file2PathString = "file2";
-    public static String resultFilePathString = "result1";
-    public static String resultFileFormat = "txt";
+    private static String file1PathString = "file1";
+    private static String file2PathString = "file2";
+    private static String resultFilePathString = "result1";
+    private static String resultFileFormat = "txt";
 
     public static Path getFixturePath(String testName, String filename, String fileFormat) {
         return Paths.get("src", "test", "resources", "fixtures", testName, filename + "." + fileFormat)
